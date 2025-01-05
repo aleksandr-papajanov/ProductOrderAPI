@@ -76,6 +76,12 @@ namespace ProductOrderApi.Commands.Products
                 changed = true;
             }
 
+            if (request.IsAvailable != null)
+            {
+                product.IsAvailable = (bool)request.IsAvailable;
+                changed = true;
+            }
+
             if (request.QuantityInStock != null)
             {
                 product.QuantityInStock = (int)request.QuantityInStock;

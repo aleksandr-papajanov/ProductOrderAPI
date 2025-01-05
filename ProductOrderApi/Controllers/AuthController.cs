@@ -31,21 +31,6 @@ namespace ProductOrderApi.Controllers
         }
 
         /// <summary>
-        /// Registers a new user in the system.
-        /// </summary>
-        /// <param name="request">The user registration details.</param>
-        /// <returns>A success message upon registration.</returns>
-        [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
-        {
-            var command = new RegisterCommand(request);
-
-            var user = await _mediator.Send(command);
-
-            return Ok(new { message = "User registered successfully." });
-        }
-
-        /// <summary>
         /// Authenticates a user and generates a JWT token.
         /// </summary>
         /// <param name="request">The user login credentials.</param>
@@ -61,20 +46,18 @@ namespace ProductOrderApi.Controllers
         }
 
         /// <summary>
-        /// Initiates the Google registration process by generating a URL for the user to follow.
+        /// Registers a new user in the system.
         /// </summary>
-        /// <returns>
-        /// Redirect URL for Google registration.
-        /// </returns>
-        [HttpPost("register-via-google")]
-        public async Task<IActionResult> GoogleRegister()
+        /// <param name="request">The user registration details.</param>
+        /// <returns>A success message upon registration.</returns>
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
-            var command = new GoogleRegisterCommand();
+            var command = new RegisterCommand(request);
 
-            var url = await _mediator.Send(command);
+            var user = await _mediator.Send(command);
 
-            return Ok(new { Message = "Please follow this link", RedirectURL = url });
-            //return Redirect(url);
+            return Ok(new { message = "User registered successfully." });
         }
 
         /// <summary>
@@ -87,6 +70,23 @@ namespace ProductOrderApi.Controllers
         public async Task<IActionResult> GoogleLogin()
         {
             var command = new GoogleLoginCommand();
+
+            var url = await _mediator.Send(command);
+
+            return Ok(new { Message = "Please follow this link", RedirectURL = url });
+            //return Redirect(url);
+        }
+
+        /// <summary>
+        /// Initiates the Google registration process by generating a URL for the user to follow.
+        /// </summary>
+        /// <returns>
+        /// Redirect URL for Google registration.
+        /// </returns>
+        [HttpGet("register-via-google")]
+        public async Task<IActionResult> GoogleRegister()
+        {
+            var command = new GoogleRegisterCommand();
 
             var url = await _mediator.Send(command);
 
