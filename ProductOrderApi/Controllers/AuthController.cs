@@ -57,7 +57,7 @@ namespace ProductOrderApi.Controllers
 
             var token = await _mediator.Send(command);
 
-            return Ok(new { token = $"Bearer {token}" });
+            return Ok($"Bearer {token}");
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace ProductOrderApi.Controllers
 
             var token = await _mediator.Send(command);
 
-            return Ok(new { token = $"Bearer {token}" });
+            return Ok($"Bearer {token}");
         }
     }
 }

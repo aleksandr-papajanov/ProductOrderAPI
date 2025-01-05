@@ -77,6 +77,16 @@ builder.Services.AddAuthentication(options =>
             Encoding.UTF8.GetBytes(jwtKey)
         )
     };
+
+    options.Events = new JwtBearerEvents
+    {
+        OnAuthenticationFailed = context =>
+        {
+            Console.WriteLine($"Authentication failed: {context.Exception.Message}");
+            Console.WriteLine($"Token: {context.Request.Headers["Authorization"]}");
+            return Task.CompletedTask;
+        }
+    };
 });
 
 // --- Configure DB Context ---
@@ -127,8 +137,6 @@ builder.Services.AddSwaggerGen(setup =>
         }
     });
 });
-
-
 
 // --- RabbitMq ---
 

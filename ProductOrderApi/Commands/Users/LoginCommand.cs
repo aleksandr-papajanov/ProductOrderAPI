@@ -27,7 +27,7 @@ namespace ProductOrderApi.Commands.Users
         {
             var user = await _service.GetUserAsync(command.Request.Email, command.Request.Password);
 
-            var expiresAt = DateTime.UtcNow.AddHours(2);
+            var expiresAt = DateTime.Now.AddHours(2);
             var token = _service.CreateToken(user, expiresAt);
 
             return token;

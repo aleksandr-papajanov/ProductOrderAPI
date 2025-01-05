@@ -1,15 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Mysqlx.Crud;
 using ProductOrderApi.Entities;
 using ProductOrderApi.Helpers;
 using ProductOrderApi.Helpers.Exceptions;
 using ProductOrderApi.Infrastructure.Interfaces;
-using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
-using System.Runtime.ConstrainedExecution;
 using System.Security.Claims;
 using System.Text;
 
@@ -112,7 +109,14 @@ namespace ProductOrderApi.Services
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var token = new JwtSecurityToken(jwtIssuer, jwtAudience, claims, expires, signingCredentials: creds);
+
+            var token = new JwtSecurityToken(
+                issuer: jwtIssuer,
+                audience: jwtAudience,
+                claims: claims,
+                expires: expires,
+                signingCredentials: creds
+            );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
