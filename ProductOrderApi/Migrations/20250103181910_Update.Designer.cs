@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProductOrderApi.Infrastructure;
 
@@ -10,9 +11,11 @@ using ProductOrderApi.Infrastructure;
 namespace ProductOrderApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250103181910_Update")]
+    partial class Update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,24 +56,6 @@ namespace ProductOrderApi.Migrations
                             Id = 3,
                             Name = "Weight"
                         });
-                });
-
-            modelBuilder.Entity("ProductOrderApi.Entities.GoogleAuthState", b =>
-                {
-                    b.Property<Guid>("State")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("RequestType")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("State");
-
-                    b.ToTable("GoogleAuthStates");
                 });
 
             modelBuilder.Entity("ProductOrderApi.Entities.Order", b =>
@@ -219,56 +204,56 @@ namespace ProductOrderApi.Migrations
                             Id = 1,
                             OrderId = 1,
                             Status = 1,
-                            UpdatedAt = new DateTime(2025, 1, 1, 16, 53, 25, 742, DateTimeKind.Local).AddTicks(6772)
+                            UpdatedAt = new DateTime(2024, 12, 31, 19, 19, 10, 407, DateTimeKind.Local).AddTicks(1246)
                         },
                         new
                         {
                             Id = 2,
                             OrderId = 1,
                             Status = 2,
-                            UpdatedAt = new DateTime(2025, 1, 2, 16, 53, 25, 742, DateTimeKind.Local).AddTicks(6778)
+                            UpdatedAt = new DateTime(2025, 1, 1, 19, 19, 10, 407, DateTimeKind.Local).AddTicks(1251)
                         },
                         new
                         {
                             Id = 3,
                             OrderId = 1,
                             Status = 3,
-                            UpdatedAt = new DateTime(2025, 1, 3, 16, 53, 25, 742, DateTimeKind.Local).AddTicks(6779)
+                            UpdatedAt = new DateTime(2025, 1, 2, 19, 19, 10, 407, DateTimeKind.Local).AddTicks(1253)
                         },
                         new
                         {
                             Id = 4,
                             OrderId = 2,
                             Status = 1,
-                            UpdatedAt = new DateTime(2024, 12, 30, 16, 53, 25, 742, DateTimeKind.Local).AddTicks(6781)
+                            UpdatedAt = new DateTime(2024, 12, 29, 19, 19, 10, 407, DateTimeKind.Local).AddTicks(1255)
                         },
                         new
                         {
                             Id = 5,
                             OrderId = 2,
                             Status = 2,
-                            UpdatedAt = new DateTime(2024, 12, 31, 16, 53, 25, 742, DateTimeKind.Local).AddTicks(6782)
+                            UpdatedAt = new DateTime(2024, 12, 30, 19, 19, 10, 407, DateTimeKind.Local).AddTicks(1256)
                         },
                         new
                         {
                             Id = 6,
                             OrderId = 2,
                             Status = 3,
-                            UpdatedAt = new DateTime(2025, 1, 1, 16, 53, 25, 742, DateTimeKind.Local).AddTicks(6784)
+                            UpdatedAt = new DateTime(2024, 12, 31, 19, 19, 10, 407, DateTimeKind.Local).AddTicks(1258)
                         },
                         new
                         {
                             Id = 7,
                             OrderId = 2,
                             Status = 6,
-                            UpdatedAt = new DateTime(2025, 1, 2, 16, 53, 25, 742, DateTimeKind.Local).AddTicks(6786)
+                            UpdatedAt = new DateTime(2025, 1, 1, 19, 19, 10, 407, DateTimeKind.Local).AddTicks(1259)
                         },
                         new
                         {
                             Id = 8,
                             OrderId = 3,
                             Status = 1,
-                            UpdatedAt = new DateTime(2025, 1, 4, 16, 53, 25, 742, DateTimeKind.Local).AddTicks(6787)
+                            UpdatedAt = new DateTime(2025, 1, 3, 19, 19, 10, 407, DateTimeKind.Local).AddTicks(1261)
                         });
                 });
 
@@ -326,10 +311,10 @@ namespace ProductOrderApi.Migrations
                         {
                             Id = 1,
                             Code = "AD268754",
-                            CreatedAt = new DateTime(2025, 1, 4, 16, 53, 25, 742, DateTimeKind.Local).AddTicks(6307),
+                            CreatedAt = new DateTime(2025, 1, 3, 19, 19, 10, 407, DateTimeKind.Local).AddTicks(650),
                             Description = "Test description for product 1",
                             IsAvailable = true,
-                            ModifiedAt = new DateTime(2025, 1, 4, 16, 53, 25, 742, DateTimeKind.Local).AddTicks(6360),
+                            ModifiedAt = new DateTime(2025, 1, 3, 19, 19, 10, 407, DateTimeKind.Local).AddTicks(695),
                             Name = "Product 1",
                             Price = 15.99m,
                             QuantityInStock = 14
@@ -338,10 +323,10 @@ namespace ProductOrderApi.Migrations
                         {
                             Id = 2,
                             Code = "FR235467",
-                            CreatedAt = new DateTime(2025, 1, 4, 16, 53, 25, 742, DateTimeKind.Local).AddTicks(6364),
+                            CreatedAt = new DateTime(2025, 1, 3, 19, 19, 10, 407, DateTimeKind.Local).AddTicks(699),
                             Description = "Test description for product 2",
                             IsAvailable = true,
-                            ModifiedAt = new DateTime(2025, 1, 4, 16, 53, 25, 742, DateTimeKind.Local).AddTicks(6365),
+                            ModifiedAt = new DateTime(2025, 1, 3, 19, 19, 10, 407, DateTimeKind.Local).AddTicks(700),
                             Name = "Product 2",
                             Price = 1.50m,
                             QuantityInStock = 3
@@ -350,10 +335,10 @@ namespace ProductOrderApi.Migrations
                         {
                             Id = 3,
                             Code = "TY547756",
-                            CreatedAt = new DateTime(2025, 1, 4, 16, 53, 25, 742, DateTimeKind.Local).AddTicks(6367),
+                            CreatedAt = new DateTime(2025, 1, 3, 19, 19, 10, 407, DateTimeKind.Local).AddTicks(703),
                             Description = "Test description for product 3",
                             IsAvailable = true,
-                            ModifiedAt = new DateTime(2025, 1, 4, 16, 53, 25, 742, DateTimeKind.Local).AddTicks(6368),
+                            ModifiedAt = new DateTime(2025, 1, 3, 19, 19, 10, 407, DateTimeKind.Local).AddTicks(704),
                             Name = "Product 3",
                             Price = 24.99m,
                             QuantityInStock = 11
@@ -449,9 +434,6 @@ namespace ProductOrderApi.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<bool>("IsGoogleUser")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -469,7 +451,6 @@ namespace ProductOrderApi.Migrations
                             Id = 1,
                             Email = "admin@example.com",
                             IsActive = true,
-                            IsGoogleUser = false,
                             Password = "fFied55ufW537BcXC4z0CHqWWZ7gWwyI6K5OgZVG32VP2tScM02Mv/BWLWSI7nVL"
                         },
                         new
@@ -477,7 +458,6 @@ namespace ProductOrderApi.Migrations
                             Id = 2,
                             Email = "customer@example.com",
                             IsActive = true,
-                            IsGoogleUser = false,
                             Password = "fFied55ufW537BcXC4z0CHqWWZ7gWwyI6K5OgZVG32VP2tScM02Mv/BWLWSI7nVL"
                         },
                         new
@@ -485,7 +465,6 @@ namespace ProductOrderApi.Migrations
                             Id = 3,
                             Email = "admin.custumer@example.com",
                             IsActive = true,
-                            IsGoogleUser = false,
                             Password = "fFied55ufW537BcXC4z0CHqWWZ7gWwyI6K5OgZVG32VP2tScM02Mv/BWLWSI7nVL"
                         });
                 });

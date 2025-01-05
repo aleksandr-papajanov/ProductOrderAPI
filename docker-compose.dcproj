@@ -4,7 +4,7 @@
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
     <DockerPublishLocally>False</DockerPublishLocally>
-    <ProjectGuid>5f4ee3f5-4e5e-4e7e-aca8-c603122817d8</ProjectGuid>
+    <ProjectGuid>16356374-a7da-40ff-a5bd-bc303203cf35</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>productorderapi</DockerServiceName>

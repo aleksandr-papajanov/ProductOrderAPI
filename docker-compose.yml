@@ -1,30 +1,55 @@
+﻿volumes:
+  data:
+
 services:
+  #Api  Service
   productorderapi:
     image: ${DOCKER_REGISTRY-}productorderapi
     build:
       context: ProductOrderApi
       dockerfile: Dockerfile
+    container_name: ProductOrderApi
     ports:
       - "8080:8080"
     environment:
+      - ConnectionStrings__DefaultConnection=Server=mysqldb; Port=3306; Database=ProductOrderDB; Uid=apiadmin; Pwd=pass@word1234;
       - ASPNETCORE_ENVIRONMENT=Development
-      - CONNECTION_STRING=Server=db;Port=3306;Database=productorderdb;User=admin;Password=adminpassword;
+      - RabbitMq__Host=rabbitmq
+      - RabbitMq__Queue=OrderStatusUpdate
     depends_on:
-      - db
+      - mysqldb
+      - rabbitmq
 
-  db:
+  #DataBase Service
+  mysqldb:
     image: mysql:8.0
-    container_name: mysql-container
     ports:
       - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: productorderdb
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: adminpassword
     volumes:
-      - mysql_data:/var/lib/mysql
-    restart: unless-stopped
+      - data:/var/lib/mysql
+    restart: always
+    environment: 
+      MYSQL_ROOT_PASSWORD: Root0++
+      MYSQL_USER: apiadmin
+      MYSQL_PASSWORD: pass@word1234
+      MYSQL_DATABASE: ProductOrderDB
 
-volumes:
-  mysql_data:
+  logconsole:
+    build:
+      context: LogConsole
+      dockerfile: Dockerfile
+    depends_on:
+      - rabbitmq
+    environment:
+      RabbitMq__Host: rabbitmq
+      RabbitMq__Queue: OrderStatusUpdate
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
